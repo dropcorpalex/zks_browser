@@ -1,25 +1,23 @@
 # main.py
 import requests
 import time
+from utils import to_hex, from_hex  # Import helper functions
 
 class BlockExplorer:
-    def __init__(self):
-        self.api_url = 'https://api.zksync.io/jsrpc'  # Replace with the actual API URL
-
+    ...
     def get_block(self, block_number):
+        hex_block_number = to_hex(block_number)  # Convert the block number to hex
         payload = {
             "jsonrpc": "2.0",
             "method": "eth_getBlockByNumber",
-            "params": [hex(block_number), True],
+            "params": [hex_block_number, True],
             "id": 1
         }
         response = requests.post(self.api_url, json=payload)
         return response.json()
 
 def main():
-    explorer = BlockExplorer()
-    
-    # Run the block explorer every 10 seconds to get new blocks
+    ...
     while True:
         block = explorer.get_block(0)  # Replace 0 with the actual block number you want to track
         print(block)
