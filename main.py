@@ -1,7 +1,9 @@
 # main.py
+
 import requests
 import time
 from utils import to_hex, from_hex  # Import helper functions
+from logger import setup_logger  # Import logger setup
 
 class BlockExplorer:
     ...
@@ -17,10 +19,13 @@ class BlockExplorer:
         return response.json()
 
 def main():
-    ...
+    logger = setup_logger()
+    explorer = BlockExplorer()
+    
     while True:
+        logger.info('Fetching block')
         block = explorer.get_block(0)  # Replace 0 with the actual block number you want to track
-        print(block)
+        logger.info(f'Block fetched: {block}')
         time.sleep(10)
 
 if __name__ == "__main__":
